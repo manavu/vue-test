@@ -1,6 +1,8 @@
 <style>
   .yellow {
     color: #f0f;
+    background-image: url('./img/disp-img.jpg');
+    background-repeat: no-repeat;
   }
 </style>
 
@@ -8,7 +10,7 @@
   <div>
     <common-view value='渡したメッセージ' @input="receivedMsg = $event"></common-view>
     <p>{{receivedMsg}}</p>
-    <h1 class="yellow">apge A</h1>
+    <h1 class="yellow">page A</h1>
     <p>
       this page is A!!!
     </p>
@@ -48,13 +50,17 @@
       // Ajax通信でJsonを取得し、特定のプロパティに格納する
       // 取得したら GET_AJAX_COMPLETE で通知する
       get_ajax() {
-        return Axios.get('http://localhost:8081/')
+        var config = {
+            headers: { 'X-GyoPro-Api-Key': 'LkzWhuPRz7vFMYM7dwXs2Lb6NVAMmWKeNyG' },
+            data: {} // これがないとダメらしい
+        }
+        return Axios.get('http://localhost:8081/', config)
           .then((res) => {
             var data = [
-              {name: 'test1', value:'value1' },
-              {name: 'test2', value:'value2' },
-              {name: 'test3', value:'value3' },
-              {name: 'test4', value:'value4' },
+              {name: 'test1', value: 'value1'},
+              {name: 'test2', value: 'value2'},
+              {name: 'test3', value: 'value3'},
+              {name: 'test4', value: 'value4'},
             ]
             
             // 

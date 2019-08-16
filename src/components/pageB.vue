@@ -6,7 +6,7 @@
 
 <template>
   <div>
-    <h1 class="yellow">apge B</h1>
+    <h1 class="yellow">page B</h1>
     <p v-if="errors.length">
       <b>エラーがあるよ</b>
       <ul>

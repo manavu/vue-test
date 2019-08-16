@@ -1,4 +1,5 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // webpack v4
 
@@ -25,6 +26,22 @@ module.exports = {
     }
   },
 
+  optimization: {
+    splitChunks: {
+      // cacheGroups内にバンドルの設定を複数記述できる
+      cacheGroups: {
+        // 今回はvendorだが、任意の名前で問題ない
+        vendor: {
+          // node_modules配下のモジュールをバンドル対象とする
+          test: /node_modules/,
+          name: 'vendor',
+          chunks: 'initial',
+          enforce: true
+        }
+      }
+    }
+  },
+
   module: {
     rules: [
       // require 等で参照されたファイルの拡張子が.vue だった場合は、vue-loader に処理を渡す
@@ -44,19 +61,35 @@ module.exports = {
           'vue-style-loader', // 次にスタイルシートをJSからlinkタグに展開する機能
           'css-loader'  // 最初にCSSをバンドルするための機能が呼び出される
         ]
+      },
+      // 画像参照をバイナリとして埋め込む
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'url-loader'
       }
     ]
   },
 
   plugins: [
     // make sure to include the plugin!
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    })
   ],
 
   // ローカル開発用環境を立ち上げる
   // 実行時にブラウザが自動的に localhost を開く
   devServer: {
     contentBase: "./",
+    // CORSを回避する方法。/apiへのリクエストは全て他のサーバーに処理を委譲する
+    /*
+    proxy: {
+      '/api': {
+          target: 'http://redirecthost:5000', // local api server
+          pathRewrite: {'^/api' : ''} // rewrite
+      }
+    },*/
     open: true
   }
 };

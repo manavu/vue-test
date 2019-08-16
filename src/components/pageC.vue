@@ -1,8 +1,12 @@
 <style>
+  .yellow {
+    color: #f0f;
+  }
 </style>
 
 <template>
   <div>
+    <h1 class="yellow">page C</h1>
     <div>
       <button v-on:click="clickPlus">プラス</button>
       <button v-on:click="clickMinus">マイナス</button>
