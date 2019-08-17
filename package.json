@@ -5,9 +5,8 @@
   "repository": "https://github.com/manavu/vue-test.git",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open",
-    "build": "webpack",
-    "watch": "webpack --watch"
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",

@@ -81,7 +81,12 @@ module.exports = {
   // ローカル開発用環境を立ち上げる
   // 実行時にブラウザが自動的に localhost を開く
   devServer: {
-    contentBase: "./",
+    contentBase: './',  // サーバーの起点ディレクトリ
+    watchContentBase: true, // コンテンツベースに置かれたファイル(htmlやcssなど)の変更を監視する
+    lazy: false, // ファイルの変更を監視するかしないか。lazyの値をtrueにした場合は、コンパイルとブラウザの再読み込みを手動で行います。
+    host: 'localhost',
+    port: '8081',
+    publicPath: '/dist/', // webpack-dev-server によってバンドルされたファイルのアクセス先（物理的に作られない）
     // CORSを回避する方法。/apiへのリクエストは全て他のサーバーに処理を委譲する
     /*
     proxy: {
@@ -90,6 +95,6 @@ module.exports = {
           pathRewrite: {'^/api' : ''} // rewrite
       }
     },*/
-    open: true
+    open: true  // ブラウザを自動的に開くかどうか
   }
 };
