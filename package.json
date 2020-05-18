@@ -5,7 +5,7 @@
   "repository": "https://github.com/manavu/vue-test.git",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --hot --inline --config webpack.config.js",
     "build": "webpack"
   },
   "author": "",
