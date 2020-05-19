@@ -1,15 +1,15 @@
-const VueLoaderPlugin = require("vue-loader/lib/plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // webpack v4
 
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: "development",
+  mode: 'development',
 
   // ソースマップの種類を明示する
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
 
   // メインとなるJavaScriptファイル（エントリーポイント）
   entry: `./src/index.js`,
@@ -19,13 +19,13 @@ module.exports = {
     // 出力ファイルのディレクトリ名
     path: `${__dirname}/dist`,
     // 出力ファイル名
-    filename: "main.js",
+    filename: 'main.js',
   },
 
   // これを入れないと正しくコンパイルされない
   resolve: {
     alias: {
-      vue$: "vue/dist/vue.esm.js", // 'vue/dist/vue.common.js' webpack 1 用
+      vue$: 'vue/dist/vue.esm.js', // 'vue/dist/vue.common.js' webpack 1 用
     },
   },
 
@@ -37,8 +37,8 @@ module.exports = {
         vendor: {
           // node_modules配下のモジュールをバンドル対象とする
           test: /node_modules/,
-          name: "vendor",
-          chunks: "initial",
+          name: 'vendor',
+          chunks: 'initial',
           enforce: true,
         },
       },
@@ -50,25 +50,25 @@ module.exports = {
       // require 等で参照されたファイルの拡張子が.vue だった場合は、vue-loader に処理を渡す
       {
         test: /\.vue$/,
-        loader: "vue-loader",
+        loader: 'vue-loader',
       },
       // this will apply to both plain `.js` files AND `<script>` blocks in `.vue` files
       {
         test: /\.js$/,
-        loader: "babel-loader",
+        loader: 'babel-loader',
       },
       // this will apply to both plain `.css` files AND `<style>` blocks in `.vue` files
       {
         test: /\.css$/,
         use: [
-          "vue-style-loader", // 次にスタイルシートをJSからlinkタグに展開する機能
-          "css-loader", // 最初にCSSをバンドルするための機能が呼び出される
+          'vue-style-loader', // 次にスタイルシートをJSからlinkタグに展開する機能
+          'css-loader', // 最初にCSSをバンドルするための機能が呼び出される
         ],
       },
       // 画像参照をバイナリとして埋め込む
       {
         test: /\.(jpg|png)$/,
-        loader: "url-loader",
+        loader: 'url-loader',
       },
     ],
   },
@@ -77,19 +77,18 @@ module.exports = {
     // make sure to include the plugin!
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
+      filename: '[name].css',
     }),
   ],
 
-  // ローカル開発用環境を立ち上げる
-  // 実行時にブラウザが自動的に localhost を開く
+  // ローカル開発用Webサーバーを立ち上げる
   devServer: {
-    contentBase: "./", // サーバーの起点ディレクトリ
+    contentBase: './', // サーバーの起点ディレクトリ
     watchContentBase: true, // コンテンツベースに置かれたファイル(htmlやcssなど)の変更を監視する
     lazy: false, // ファイルの変更を監視するかしないか。lazyの値をtrueにした場合は、コンパイルとブラウザの再読み込みを手動で行います。
-    host: "localhost",
-    port: "8081",
-    publicPath: "/dist/", // webpack-dev-server によってバンドルされたファイルのアクセス先（物理的に作られない）
+    host: 'localhost',
+    port: '8081',
+    publicPath: '/dist/', // webpack-dev-server によってバンドルされたファイルのアクセス先（物理的に作られない）
     // CORSを回避する方法。/apiへのリクエストは全て他のサーバーに処理を委譲する
     /*
     proxy: {
@@ -100,4 +99,4 @@ module.exports = {
     },*/
     open: false, // ブラウザを自動的に開くかどうか
   },
-};
+}
