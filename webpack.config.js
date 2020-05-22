@@ -1,8 +1,9 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-// webpack v4
+const isDevelopment = process.env.NODE_ENV === 'development'
 
+// webpack v4
 module.exports = {
   // モード値を production に設定すると最適化された状態で、
   // development に設定するとソースマップ有効でJSファイルが出力される

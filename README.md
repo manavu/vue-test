@@ -6,7 +6,7 @@ node.js をインストールする。使っていたバージョンは、12.7.0
 `npm install`
 
 特にエラーがなければ次のコマンドを実行して、ローカルの Web サーバーを起動させる。
-`npm start`
+`npm run debug`
 
 VSCode を使っている場合は、F5 を押すことでデバッグ起動できる。
 launch.json で制御を行っている
@@ -14,3 +14,7 @@ launch.json で制御を行っている
 # VSCode でコーディングするときに便利な拡張機能
 
 Vuter と Prettier が連動しているので保存時に Prettier の書式でソースがフォーマットされる
+
+# webpack で環境変数を渡す場合
+
+cross-env というライブラリを使う。Windows の npm で NODE_ENV=production をするとコマンドが停止するらしいので環境に依存しないこのライブラリを使って設定を行う
