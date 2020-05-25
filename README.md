@@ -18,3 +18,14 @@ Vuter と Prettier が連動しているので保存時に Prettier の書式で
 # webpack で環境変数を渡す場合
 
 cross-env というライブラリを使う。Windows の npm で NODE_ENV=production をするとコマンドが停止するらしいので環境に依存しないこのライブラリを使って設定を行う
+
+# webpack を直接使わない方法もある
+
+vue-cli-service というツールを使う。このツールが webpack のスクリプトを自動で生成してくれるっぽい。
+なので、必要最低限の設定だけを行えば webpack に関する知識を必要としないでも作れる。
+webpack を直接利用する必要がない場合は vue-cli-service を使ったほうが楽だと思う。
+
+```
+$ npm install -g @vue/cli
+$ vue ui
+```
