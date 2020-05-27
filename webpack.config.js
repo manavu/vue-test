@@ -1,5 +1,6 @@
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
@@ -71,6 +72,10 @@ module.exports = {
         test: /\.(jpg|png)$/,
         loader: 'url-loader',
       },
+      {
+        test: /\.html$/,
+        loader: 'html-loader',
+      },
     ],
   },
 
@@ -79,6 +84,9 @@ module.exports = {
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
     }),
   ],
 
