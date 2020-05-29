@@ -59,7 +59,7 @@ export default {
         data: {}, // これがないとダメらしい
       }
 
-      var res = await Axios.get('http://localhost:8081/', config)
+      var res = await Axios.get('/', config)
       if (res.status == 200) {
         var data = [
           { name: 'test5', value: 'value5' },
@@ -80,7 +80,7 @@ export default {
         headers: { 'X-Api-Key': 'test' },
         data: {}, // これがないとダメらしい
       }
-      return Axios.get('http://localhost:8081/', config).then((res) => {
+      return Axios.get('/', config).then((res) => {
         var data = [
           { name: 'test1', value: 'value1' },
           { name: 'test2', value: 'value2' },
