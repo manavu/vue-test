@@ -17,7 +17,7 @@ var router = new VueRouter({
     { path: '/pageA', component: PageA },
     { path: '/pageB', component: PageB },
     { path: '/pageC', component: PageC },
-  ]
+  ],
 })
 
 new Vue({

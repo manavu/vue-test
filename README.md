@@ -6,7 +6,7 @@ node.js をインストールする。使っていたバージョンは、12.7.0
 `npm install`
 
 特にエラーがなければ次のコマンドを実行して、ローカルの Web サーバーを起動させる。
-`npm run debug`
+`npm run serve`
 
 VSCode を使っている場合は、F5 を押すことでデバッグ起動できる。
 launch.json で制御を行っている

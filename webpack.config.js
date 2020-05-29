@@ -14,7 +14,7 @@ module.exports = {
   devtool: 'inline-source-map',
 
   // メインとなるJavaScriptファイル（エントリーポイント）
-  entry: `./src/index.js`,
+  entry: './src/index.js',
 
   // ファイルの出力設定
   output: {
@@ -72,6 +72,7 @@ module.exports = {
         test: /\.(jpg|png)$/,
         loader: 'url-loader',
       },
+      // HTMLファイルもビルド対象にする
       {
         test: /\.html$/,
         loader: 'html-loader',
@@ -85,19 +86,24 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
+    // HTMLを自動生成してくれるプラグイン。今回はベースのHTMLを使用する
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
   ],
 
   // ローカル開発用Webサーバーを立ち上げる
+  // 正しいかわからないが、ビルド結果は dist に出力される（デバッグ時はオンメモリ）。
+  // それをコンテンツのルートとする為に、contentBase を dist にする。
+  // そこをパブリックフォルダとするという感じの設定。
+  // ただ、ヘルプページや説明しているサイトを見るとなんか意味が違う気がする
   devServer: {
-    contentBase: './', // サーバーの起点ディレクトリ
+    contentBase: './dist', // webpackの扱わないファイル(HTMLや画像など)が入っているディレクトリ
     watchContentBase: true, // コンテンツベースに置かれたファイル(htmlやcssなど)の変更を監視する
     lazy: false, // ファイルの変更を監視するかしないか。lazyの値をtrueにした場合は、コンパイルとブラウザの再読み込みを手動で行います。
     host: 'localhost',
     port: '8081',
-    publicPath: '/dist/', // webpack-dev-server によってバンドルされたファイルのアクセス先（物理的に作られない）
+    publicPath: '/',
     // CORSを回避する方法。/apiへのリクエストは全て他のサーバーに処理を委譲する
     /*
     proxy: {
